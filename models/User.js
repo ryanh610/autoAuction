@@ -13,16 +13,21 @@ User.init({
   },
   username: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      len: [8]
+    }
   }
 }, {
   sequelize,
   hooks: {
     beforeCreate: async user => {
+      user.username = user.username.toLowerCase()
       user.password = await bcrypt.hash(user.password, 10)
 
       return user
