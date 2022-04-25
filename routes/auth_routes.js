@@ -6,6 +6,7 @@ const router = express.Router()
 
 // TODO: Create a new user, authenticate them
 router.post('/signup', async (req, res) => {
+  if (!req.body.username || !req.body.password) return res.redirect('/signup')
   const user = await User.create({
     username: req.body.username,
     password: req.body.password
