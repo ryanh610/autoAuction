@@ -16,7 +16,11 @@ Car.init(
       allowNull: false
     },
     model: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    milage: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     color: {
@@ -44,7 +48,7 @@ Car.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Car',
+    modelName: 'car',
   }
 );
 
