@@ -1,0 +1,27 @@
+[
+  {
+    "price": 10000,
+    "user_id": 3,
+    "car_id": 3
+  },
+  {
+    "price": 29000,
+    "user_id": 1,
+    "car_id": 3
+  },
+  {
+    "price": 29001,
+    "user_id": 3,
+    "car_id": 3
+  },
+  {
+    "price": 15000,
+    "user_id": 1,
+    "car_id": 2
+  },
+  {
+    "price": 100000,
+    "user_id": 3,
+    "car_id": 2
+  }
+]
