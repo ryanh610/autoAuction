@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Auction</title>
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+  <body class="container mx-auto">
+    <nav class="flex justify-end">
+      {{#if user}}
+        <form action="/logout" method="POST" id="logout">
+          <input type="submit" value="Logout">
+        </form>
+      {{else}}
+        <a href="/signup" class="mr-4">Sign Up</a>
+        <a href="/login">Login</a>
+      {{/if}}
+    </nav>
+    {{{body}}}
+    {{#if user}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
+  </body>
+</html>

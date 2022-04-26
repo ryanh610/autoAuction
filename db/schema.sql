@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS auto_auction;
+
+CREATE DATABASE IF NOT EXISTS auto_auction;
