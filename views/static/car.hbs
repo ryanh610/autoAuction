@@ -1,0 +1,17 @@
+{{#if loggedIn}}
+  <section class="container">
+    <h2 class="car-name">{{car.year}}{{car.manufacturer}}{{car.model}}</h3>
+    <h3>Listed by {{car.user_id}}</h4>
+    <h4>Mileage: {{car.mileage}}</h4>
+    <img src="/images/{{cars.[0].filename}}">
+
+
+  <section class="flex-row justify-center">
+    {{#each car.bids as |bid|}}
+    {{> bid-details}}
+    {{/each}}
+  </section>
+  </section>
+{{else}}
+<a href="/login">You must login first to view any available cars</a>
+{{/if}}
