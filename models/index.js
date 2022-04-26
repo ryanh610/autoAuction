@@ -25,4 +25,8 @@ Bid.belongsTo(User, {
     foreignKey: 'user_id'
   });
 
+Bid.hasOne(Car, {
+  foreignKey: 'car_id'
+});
+
 module.exports = { User, Car, Bid };
