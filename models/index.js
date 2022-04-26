@@ -4,12 +4,12 @@ const Bid = require('./Bid')
 
 User.hasMany(Car, {
   foreignKey: 'user_id',
-//   onDelete: 'CASCADE'
+  onDelete: 'CASCADE'
 });
 
 User.hasMany(Bid, {
     foreignKey: 'user_id',
-    // onDelete: 'CASCADE'
+    onDelete: 'CASCADE'
   });
 
 Car.belongsTo(User, {
@@ -18,7 +18,7 @@ Car.belongsTo(User, {
 
 Car.hasMany(Bid, {
     foreignKey: 'car_id',
-    // onDelete: 'CASCADE'
+    onDelete: 'CASCADE'
   });
 
 Bid.belongsTo(User, {
