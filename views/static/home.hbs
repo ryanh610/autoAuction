@@ -3,3 +3,7 @@
 {{else}}
   <h1>Hello, Guest</h1>
 {{/if}}
+
+{{#each cars as |car|}}
+{{> car-details}}
+{{/each}}
