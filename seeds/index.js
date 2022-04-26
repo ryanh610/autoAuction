@@ -1,20 +1,9 @@
 const sequelize = require('../config/db')
-const User = require("../models/User");
+const { Bid, Car, User } = require('../models')
 
-const users = [
-  {
-    username: 'ryan_howley',
-    password: 'password'
-  },
-  {
-    username: 'gus_madden',
-    password: 'password'
-  },
-  {
-    username: 'matthew_carson',
-    password: 'password'
-  }
-]
+const cars = require('./cars.json')
+const bids = require('./bids.json');
+const users = require('./users.json')
 
 const run = async () => {
   await sequelize.sync({ force: true })
@@ -22,6 +11,14 @@ const run = async () => {
     individualHooks: true
   })
   console.log('---Users table seeded successfully!---')
+  await Car.bulkCreate(cars, {
+    individualHooks: true
+  })
+  console.log('---Cars table seeded successfully---')
+  await Bid.bulkCreate(bids, {
+    individualHooks: true
+  })
+  console.log('---Bids table seeded successfully---')
   process.exit(0)
 }
 

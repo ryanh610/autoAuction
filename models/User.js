@@ -25,6 +25,7 @@ User.init({
   }
 }, {
   sequelize,
+  modelName: 'users',
   hooks: {
     beforeCreate: async user => {
       user.username = user.username.toLowerCase()
