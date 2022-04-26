@@ -1,8 +1,10 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const path = require('path')
 const routes = require('./routes')
 const session = require('express-session')
 const sequelize = require('./config/db')
+const { engine } = require('express-handlebars')
 const SequelizeSessionStore = require('connect-session-sequelize')(session.Store)
 
 dotenv.config()
@@ -21,7 +23,11 @@ app.use(session({
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')))
 
+app.engine('.hbs', engine({ extname: '.hbs'}))
+app.set('view engine', '.hbs')
+app.set('views', './views')
 app.use(routes)
 
 sequelize.sync({ force: false }).then(() => {
