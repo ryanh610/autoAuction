@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/db');
 
 class Bid extends Model {}
 
@@ -18,14 +18,14 @@ Bid.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'users',
         key: 'id',
       },
     },
     car_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'car',
+          model: 'cars',
           key: 'id',
         }
     }
@@ -33,7 +33,7 @@ Bid.init(
   {
     sequelize,
     underscored: true,
-    modelName: 'bid',
+    modelName: 'bids',
   }
 );
 

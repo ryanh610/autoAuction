@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/db');
 
 class Car extends Model {}
 
@@ -19,13 +19,13 @@ Car.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    milage: {
+    mileage: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
     color: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     description: {
       type: DataTypes.STRING,
@@ -38,7 +38,7 @@ Car.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'users',
         key: 'id',
       },
     },
