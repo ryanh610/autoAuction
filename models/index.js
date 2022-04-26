@@ -22,10 +22,10 @@ Car.hasMany(Bid, {
   });
 
 Bid.belongsTo(User, {
-    foreignKey: 'user_id'
-  });
+  foreignKey: 'user_id'
+});
 
-Bid.hasOne(Car, {
+Bid.belongsTo(Car, {
   foreignKey: 'car_id'
 });
 

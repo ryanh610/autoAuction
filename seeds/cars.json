@@ -1,0 +1,31 @@
+[
+  {
+    "manufacturer": "Saturn",
+    "model": "L200",
+    "mileage": 100000,
+    "color": "White",
+    "description": "Does Saturn even exist, anymore?",
+    "year": 2000,
+    "user_id": 1
+  },
+  {
+    "manufacturer": "Volkswagen",
+    "model": "Passat S",
+    "mileage": 68761,
+    "color": "Blueish",
+    "description": "It is a car. It works.",
+    "year": 2019,
+    "user_id": 2
+  },
+  {
+    "manufacturer": "Volkswagen",
+    "model": "Jetta SEL",
+    "mileage": 15500,
+    "color": "White",
+    "description": "Only been driven 16 times.",
+    "year": 2021,
+    "user_id": 2
+  }
+]
+
+
