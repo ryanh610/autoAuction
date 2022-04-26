@@ -2,7 +2,8 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "seed": "node seeds/index.js"
+    "seed": "node seeds/index.js",
+    "tailwind": "npx tailwindcss -i ./src/css/app.css -o ./public/css/app.css --watch"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -13,5 +14,8 @@
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
     "sequelize": "^6.19.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
   }
 }

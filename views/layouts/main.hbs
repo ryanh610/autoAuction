@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Auction</title>
+    <link rel="stylesheet" href="/css/app.css">
   </head>
-  <body>
-    <nav>
+  <body class="container mx-auto">
+    <nav class="flex justify-end">
       {{#if user}}
         <form action="/logout" method="POST" id="logout">
           <input type="submit" value="Logout">
         </form>
       {{else}}
-        <a href="/signup">Sign Up</a>
+        <a href="/signup" class="mr-4">Sign Up</a>
         <a href="/login">Login</a>
       {{/if}}
     </nav>
