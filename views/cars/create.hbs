@@ -1,0 +1,33 @@
+<form action="/api/cars" method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="manufacturer">Manufacturer</label>
+    <input type="text" name="manufacturer" id="manufacturer">
+  </div>
+  <div>
+    <label for="model">Model</label>
+    <input type="text" name="model" id="model">
+  </div>
+  <div>
+    <label for="mileage">Mileage</label>
+    <input type="number" name="mileage" id="mileage">
+  </div>
+  <div>
+    <label for="color">Color</label>
+    <input type="text" name="color" id="color">
+  </div>
+  <div>
+    <label for="year">Year</label>
+    <input type="number" name="year" id="year">
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <label for="file">File</label>
+    <input type="file" name="uploaded_file" id="file">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
