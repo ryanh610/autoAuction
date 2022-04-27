@@ -51,14 +51,27 @@ router.post('/', upload.single('uploaded_file'), async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    let carData = await Car.findAll({ include: [{model: User, attributes: ['username']}, {model: Bid, attributes: ['price']}]})
+    let carData = await Car.findAll(
+      { 
+        include: [
+          {model: User, attributes: ['username']}, 
+          {model: Bid, attributes: ['price']}
+        ]
+      });
     res.status(200).json(carData)
   } catch(err) {res.status(400).json(err)}
 });
 
 router.get("/:id", async (req, res) => {
   try {  
-    let carData = Car.findOne({ where: {id: req.params.id}, include: [{model: User, attributes: ['username']}, {model: Bid, attributes: ['price']}]})
+    let carData = await Car.findOne(
+      { 
+        where: {id: req.params.id}, 
+        include: [
+          {model: User, attributes: ['username']}, 
+          {model: Bid, attributes: ['price']}
+        ]
+      });
     res.status(200).json(carData)
   } catch(err) {res.status(400).json(err)}
   });
