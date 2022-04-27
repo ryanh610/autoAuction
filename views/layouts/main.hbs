@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Auction</title>
-    <link rel="stylesheet" href="/css/jass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.3/flatly/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/app.css">
   </head>
-  <body class="container mx-auto">
-    <nav class="flex justify-end">
+  <body class="mx-auto">
+    <nav class="flex navbar navbar-dark bg-info text-white">
+      <h2 class="justify-start">Auto Auction</h2>
+      <div class="justify-end">
       {{#if user}}
         <form action="/logout" method="POST" id="logout">
           <input type="submit" value="Logout">
@@ -18,8 +20,12 @@
         <a href="/signup" class="mr-4">Sign Up</a>
         <a href="/login">Login</a>
       {{/if}}
+      </div>
     </nav>
-    {{{body}}}
+    <div class="container">
+      {{{body}}}
+    </div>
+    
     {{#if user}}
       <script src="/js/logout.js"></script>
     {{/if}}
