@@ -15,6 +15,10 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/cars/create', (req, res) => {
+  res.render('cars/create')
+})
+
 // TODO: Create these authentication views 
 router.get('/login', (req, res) => res.render('auth/login'));
 router.get('/signup', (req, res) => res.render('auth/signup'));
