@@ -6,6 +6,7 @@ const { DateTime } = require('luxon')
 class Car extends Model {
   is_active() {
     return (new Date) < this.ending_date
+    console.log(this);
   }
 
   time_values() {
@@ -20,6 +21,7 @@ class Car extends Model {
     return getTimeDifference(end.toMillis(), now.toMillis())
   }
 }
+
 
 Car.init(
   {
@@ -75,6 +77,7 @@ Car.init(
     underscored: true,
     modelName: 'car',
   }
+  
 );
 
 module.exports = Car;

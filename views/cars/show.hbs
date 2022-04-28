@@ -2,23 +2,23 @@
 <h2>Posted by {{car.user.username}}</h2>
 <h4>Mileage: {{car.mileage}}</h4>
 <br>
-<img src="{{cars.filename}}">
+<img src="/images/{{car.filename}}">
 <p>{{car.description}}</p>
 <br>
 
 <div>
+  <p>This item will become unavailable on {{car.ending_date}}. </p>
+    {{time_values.days}} days,
   <span id="auction-timer" 
-        data-days="{{time_values.days}}"
         data-hours="{{time_values.hours}}"
         data-minutes="{{time_values.minutes}}"
         data-seconds="{{time_values.seconds}}"
         >
   </span>
 </div>
-
+<br>
 <ul>
   {{#each car.bids as |bid|}}
     <li>{{bid.price}} - {{bid.user.username}}</li>
   {{/each}}
 </ul>
-
