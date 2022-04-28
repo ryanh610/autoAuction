@@ -31,7 +31,7 @@ Car.init(
       type: DataTypes.STRING,
     },
     year: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
@@ -45,6 +45,10 @@ Car.init(
         model: 'users',
         key: 'id',
       },
+    },
+    ending_date: {
+      type: DataTypes.DATE,
+      allowNull: false
     },
   },
   {

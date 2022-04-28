@@ -1,13 +1,13 @@
+const fs = require('fs')
+const path = require('path')
+const multer = require('multer')
 const router = require('express').Router();
 const { Car, Bid, User } = require('../../models');
-
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
+const { authenticated } = require('../../helpers/middleware')
 
 const upload = multer({ dest: 'uploads/' })
 
-router.post('/', upload.single('uploaded_file'), async (req, res) => {
+router.post('/', [authenticated, upload.single('uploaded_file')], async (req, res) => {
   (async () => {
     const fileExt = req.file.originalname.substring(req.file.originalname.indexOf('.'))
     const fileName = req.file.filename + fileExt
@@ -42,6 +42,7 @@ router.post('/', upload.single('uploaded_file'), async (req, res) => {
       year: req.body.year,
       mileage: req.body.mileage,
       color: req.body.color,
+      ending_date: req.body.ending_date,
       description: req.body.description,
       file_path: fileURL.url
     })

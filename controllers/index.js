@@ -1,12 +1,14 @@
 const express = require('express')
 const auth_routes = require('./auth_routes')
-const path = require('path')
 const apiRoutes = require('./api');
+const cars = require('./cars')
 
 const router = express.Router();
 
 router.use('/api', apiRoutes);
 router.use('/users', auth_routes);
+
+router.use('/cars', cars)
 
 router.get('/', (req, res) => {
   const user = req.session.user || null
