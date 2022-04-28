@@ -2,19 +2,35 @@ const express = require('express')
 const auth_routes = require('./auth_routes')
 const apiRoutes = require('./api');
 const cars = require('./cars')
-
+const Car = require('../models/Car')
 const router = express.Router();
+
 
 router.use('/api', apiRoutes);
 router.use('/users', auth_routes);
 
 router.use('/cars', cars)
 
-router.get('/', (req, res) => {
-  const user = req.session.user || null
-  res.render('static/home', {
-    user: user
-  });
+router.get('/', async (req, res) => {
+  
+  
+  try {
+    // Get all projects and JOIN with user data
+    const user = req.session.user || null
+
+    const carData = await Car.findAll();
+
+    const cars = carData.map((car) => car.get({ plain: true }));
+    
+    res.render('static/home', {
+      user: user,
+      cars
+    });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  
+  
 });
 
 router.get('/cars/create', (req, res) => {
