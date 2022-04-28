@@ -1,7 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
+const { getTimeDifference } = require('@baggie/math')
+const { DateTime } = require('luxon')
 
-class Car extends Model {}
+class Car extends Model {
+  is_active() {
+    return (new Date) < this.ending_date
+  }
+
+  time_values() {
+    if (!this.is_active()) return
+    
+    const now = DateTime.fromJSDate(new Date(Date.now()))
+
+    const ending = new Date(Date.parse(this.ending_date))
+    ending.setHours(ending.getHours() + 4)
+
+    const end = DateTime.fromJSDate(ending)
+    return getTimeDifference(end.toMillis(), now.toMillis())
+  }
+}
 
 Car.init(
   {
