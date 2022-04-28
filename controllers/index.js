@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
     const carData = await Car.findAll();
 
     const cars = carData.map((car) => car.get({ plain: true }));
-    console.log(cars);
+    
     res.render('static/home', {
       user: user,
       cars
