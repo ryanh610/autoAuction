@@ -31,7 +31,7 @@ Car.init(
       type: DataTypes.STRING,
     },
     year: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
