@@ -49,6 +49,24 @@ router.post('/', upload.single('uploaded_file'), async (req, res) => {
   res.redirect('/cars')
 })
 
+router.put("/:id", async (req, res) => {
+  try {
+    const carData = await Car.update({
+      manufacturer: req.body.manufacturer,
+      model: req.body.model,
+      year: req.body.year,
+      mileage: req.body.mileage,
+      color: req.body.color,
+      description: req.body.description,
+      file_path: fileURL.url
+    },
+    { where: {id: req.params.id}})
+    res.status(200).json(carData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
     let carData = await Car.findAll({ include: [{model: User, attributes: ['username']}, {model: Bid, attributes: ['price']}]})
