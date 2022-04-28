@@ -8,6 +8,9 @@ const fs = require('fs')
 const upload = multer({ dest: 'uploads/' })
 
 router.post('/', upload.single('uploaded_file'), async (req, res) => {
+  // console.log(req.body)
+  // res.end()
+  // return
   (async () => {
     const fileExt = req.file.originalname.substring(req.file.originalname.indexOf('.'))
     const fileName = req.file.filename + fileExt
@@ -42,6 +45,7 @@ router.post('/', upload.single('uploaded_file'), async (req, res) => {
       year: req.body.year,
       mileage: req.body.mileage,
       color: req.body.color,
+      ending_date: req.body.ending_date,
       description: req.body.description,
       file_path: fileURL.url
     })

@@ -46,6 +46,10 @@ Car.init(
         key: 'id',
       },
     },
+    ending_date: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
   },
   {
     sequelize,
