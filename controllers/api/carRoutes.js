@@ -1,16 +1,13 @@
+const fs = require('fs')
+const path = require('path')
+const multer = require('multer')
 const router = require('express').Router();
 const { Car, Bid, User } = require('../../models');
-
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
+const { authenticated } = require('../../helpers/middleware')
 
 const upload = multer({ dest: 'uploads/' })
 
-router.post('/', upload.single('uploaded_file'), async (req, res) => {
-  // console.log(req.body)
-  // res.end()
-  // return
+router.post('/', [authenticated, upload.single('uploaded_file')], async (req, res) => {
   (async () => {
     const fileExt = req.file.originalname.substring(req.file.originalname.indexOf('.'))
     const fileName = req.file.filename + fileExt
