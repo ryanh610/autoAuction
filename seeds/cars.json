@@ -5,6 +5,7 @@
     "mileage": 100000,
     "color": "White",
     "description": "Does Saturn even exist, anymore?",
+    "ending_date": "2022-06-1 12:00:00",
     "year": 2000,
     "user_id": 1
   },
@@ -14,6 +15,7 @@
     "mileage": 68761,
     "color": "Blueish",
     "description": "It is a car. It works.",
+    "ending_date": "2022-06-1 12:00:00",
     "year": 2019,
     "user_id": 2
   },
@@ -23,6 +25,7 @@
     "mileage": 15500,
     "color": "White",
     "description": "Only been driven 16 times.",
+    "ending_date": "2022-06-1 12:00:00",
     "year": 2021,
     "user_id": 2
   }
