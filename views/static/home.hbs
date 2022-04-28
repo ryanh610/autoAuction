@@ -1,9 +1,9 @@
 {{#if user}}
-  <h2>Hello, {{user.username}}</h2>
+  <h1>Hello, {{user.username}}</h1>
 {{else}}
   <h1>Hello, Guest</h1>
 {{/if}}
 
 {{#each cars as |car|}}
-{{> car-details}}
+{{> car_details}}
 {{/each}}
