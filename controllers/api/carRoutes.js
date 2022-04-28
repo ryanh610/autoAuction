@@ -10,6 +10,7 @@ const upload = multer({ dest: 'uploads/' })
 router.post('/', [authenticated, upload.single('uploaded_file')], async (req, res) => {
   (async () => {
     const fileExt = req.file.originalname.substring(req.file.originalname.indexOf('.'))
+    
     const fileName = req.file.filename + fileExt
 
     fs.renameSync(

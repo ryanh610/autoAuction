@@ -33,8 +33,13 @@ router.get('/', async (req, res) => {
   
 });
 
-router.get('/cars/create', (req, res) => {
-  res.render('cars/create', {user: req.session.user})
+router.get('/create', (req, res) => {
+  try {
+    res.render('cars/create', {user: req.session.user})
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  
 })
 
 // TODO: Create these authentication views 
