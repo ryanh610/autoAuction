@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/cars/create', (req, res) => {
-  res.render('cars/create')
+  res.render('cars/create', {user: req.session.user})
 })
 
 // TODO: Create these authentication views 

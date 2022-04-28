@@ -3,7 +3,7 @@ const { Car, Bid, User } = require('../../models');
 
 router.get("/", async (req, res) => {
   try {
-    const bidData = Bid.findAll({
+    const bidData = await Bid.findAll({
       include: [
         {model: User, attributes: ['username']},
         {model: Car, attributes: ['year', 'manufacturer', 'model']}
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const bidData = Bid.findOne({
+    const bidData = await Bid.findOne({
       where: {id: req.params.id},
       include: [
         {model: User, attributes: ['username']},

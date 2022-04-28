@@ -57,8 +57,7 @@ router.put("/:id", async (req, res) => {
       year: req.body.year,
       mileage: req.body.mileage,
       color: req.body.color,
-      description: req.body.description,
-      file_path: fileURL.url
+      description: req.body.description
     },
     { where: {id: req.params.id}})
     res.status(200).json(carData);
@@ -80,7 +79,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {  
-    let carData = Car.findOne({
+    let carData = await Car.findOne({
       where: {id: req.params.id},
       include: [
         {model: User, attributes: ['username']},
@@ -96,7 +95,6 @@ router.delete('/:id', async (req, res) => {
     const carData = await Car.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
       },
     });
 
