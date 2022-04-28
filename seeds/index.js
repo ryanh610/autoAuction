@@ -1,9 +1,9 @@
 const sequelize = require('../config/db')
 const { Bid, Car, User } = require('../models')
 
-const cars = require('./cars.json')
+const cars = require('./cars.json');
 const bids = require('./bids.json');
-const users = require('./users.json')
+const users = require('./users.json');
 
 const run = async () => {
   await sequelize.sync({ force: true })

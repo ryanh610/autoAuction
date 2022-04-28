@@ -3,28 +3,23 @@ const { Car, Bid, User } = require('../../models');
 
 router.get("/", async (req, res) => {
   try {
-    const bidData = await Bid.findAll(
-      { 
-        include: [
-          {model: User, attributes: ['username']}, 
-          {model: Car, attributes: ['year', 'manufacturer', 'model']}
-        ]
-    });
-    console.log(bidData);
+    const bidData = await Bid.findAll({
+      include: [
+        {model: User, attributes: ['username']},
+        {model: Car, attributes: ['year', 'manufacturer', 'model']}
+      ]})
     res.status(200).json(bidData)
   } catch(err) {res.status(400).json(err)}
 });
 
 router.get("/:id", async (req, res) => {
   try {
-    const bidData = await Bid.findOne(
-      { 
-        where: {id: req.params.id}, 
-        include: [
-          {model: User, attributes: ['username']}, 
-          {model: Car, attributes: ['year', 'manufacturer', 'model']}
-        ]
-      });
+    const bidData = await Bid.findOne({
+      where: {id: req.params.id},
+      include: [
+        {model: User, attributes: ['username']},
+        {model: Car, attributes: ['year', 'manufacturer', 'model']}
+      ]})
     res.status(200).json(bidData)
   } catch(err) {res.status(400).json(err)}
   });
@@ -38,6 +33,16 @@ router.post('/', async (req, res) => {
     });
 
     res.status(200).json(newBid);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const bidData = await Bid.update({ price: req.body.price},
+    { where: {id: req.params.id}})
+    res.status(200).json(bidData);
   } catch (err) {
     res.status(400).json(err);
   }

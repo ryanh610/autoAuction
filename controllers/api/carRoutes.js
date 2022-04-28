@@ -50,29 +50,42 @@ router.post('/', [authenticated, upload.single('uploaded_file')], async (req, re
   res.redirect('/cars')
 })
 
+router.put("/:id", async (req, res) => {
+  try {
+    const carData = await Car.update({
+      manufacturer: req.body.manufacturer,
+      model: req.body.model,
+      year: req.body.year,
+      mileage: req.body.mileage,
+      color: req.body.color,
+      description: req.body.description
+    },
+    { where: {id: req.params.id}})
+    res.status(200).json(carData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
-    let carData = await Car.findAll(
-      { 
-        include: [
-          {model: User, attributes: ['username']}, 
-          {model: Bid, attributes: ['price']}
-        ]
-      });
+    let carData = await Car.findAll({
+      include: [
+        {model: User, attributes: ['username']},
+        {model: Bid, attributes: ['price']}
+      ]})
     res.status(200).json(carData)
   } catch(err) {res.status(400).json(err)}
 });
 
 router.get("/:id", async (req, res) => {
   try {  
-    let carData = await Car.findOne(
-      { 
-        where: {id: req.params.id}, 
-        include: [
-          {model: User, attributes: ['username']}, 
-          {model: Bid, attributes: ['price']}
-        ]
-      });
+    let carData = await Car.findOne({
+      where: {id: req.params.id},
+      include: [
+        {model: User, attributes: ['username']},
+        {model: Bid, attributes: ['price']}
+      ]})
     res.status(200).json(carData)
   } catch(err) {res.status(400).json(err)}
   });
@@ -83,7 +96,6 @@ router.delete('/:id', async (req, res) => {
     const carData = await Car.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
       },
     });
 
