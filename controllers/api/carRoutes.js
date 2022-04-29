@@ -9,10 +9,7 @@ const upload = multer({ dest: 'uploads/' })
 
 router.post('/',  upload.single('uploaded_file'), async (req, res) => {
   try {
-    
     if (req.body.file) {
-      
-    
     const fileExt = req.file.originalname.substring(req.file.originalname.indexOf('.'))
     
     const fileName = req.file.filename + fileExt
@@ -130,4 +127,21 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json(err);
   }
 })
+
+router.post('/:id/bids', authenticated, async (req, res) => {
+  console.log(req.params.id, req.body)
+  try {
+    const bid = await Bid.create({
+      price: req.body.price,
+      user_id: req.session.user.id,
+      car_id: req.params.id
+    });
+
+    // res.status(200).json(bid);
+    res.redirect(`/cars/${req.params.id}`)
+  } catch (err) {
+    res.status(400).json(err);
+  }
+})
+
 module.exports = router;
