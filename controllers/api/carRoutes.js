@@ -1,73 +1,8 @@
-const fs = require('fs')
-const path = require('path')
-const multer = require('multer')
+
 const router = require('express').Router();
 const { Car, Bid, User } = require('../../models');
 const { authenticated } = require('../../helpers/middleware')
 
-const upload = multer({ dest: 'uploads/' })
-
-router.post('/',  upload.single('uploaded_file'), async (req, res) => {
-  try {
-    if (req.body.file) {
-    const fileExt = req.file.originalname.substring(req.file.originalname.indexOf('.'))
-    
-    const fileName = req.file.filename + fileExt
-
-    fs.renameSync(
-      path.join(__dirname, '../', '../', 'uploads', req.file.filename),
-      path.join(__dirname, '../', '../', 'uploads', fileName), 
-    )
-
-    let linodeModule = await import('@aicore/linode-object-storage-lib');
-    linodeModule = linodeModule.default
-
-    await linodeModule.uploadFileToLinodeBucket(
-      process.env.LINODE_ACCESS_KEY, 
-      process.env.LINODE_SECRET, 
-      'us-east-1', 
-      path.join(__dirname, '../', '../', 'uploads', fileName), 
-      'auto-auction'
-    )
-    fs.unlinkSync(
-      path.join(__dirname, '../', '../', 'uploads', fileName)
-      )
-    const fileURL = await linodeModule.fetchObjectUrl(
-      process.env.LINODE_API_KEY, 
-      'us-east-1', 
-      'auto-auction', 
-      fileName
-    );
-    Car.create({
-      manufacturer: req.body.manufacturer,
-      model: req.body.model,
-      year: req.body.year,
-      mileage: req.body.mileage,
-      color: req.body.color,
-      ending_date: req.body.ending_date,
-      description: req.body.description,
-      file_path: fileURL.url
-    })
-  } else {
-      console.log("HEEEEEEEEEEEEEEEEY");
-      
-      const carData = await Car.create({
-        manufacturer: req.body.manufacturer,
-        model: req.body.model,
-        year: req.body.year,
-        mileage: req.body.mileage,
-        color: req.body.color,
-        ending_date: req.body.ending_date,
-        description: req.body.description
-      })
-      console.log(carData);
-      res.status(200).json(carData);
-    }
-  } catch(err) {
-    res.redirect('/cars/create')
-    // res.status(400).json(console.log(err))
-  }
-});
 
 router.put("/:id", async (req, res) => {
   try {
