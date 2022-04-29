@@ -25,7 +25,6 @@ router.get('/:id', async (req, res) => {
     bid.get({ plain: true })
   })
   if (!car) return res.status(404).render('errors/404')
-  car.get({ plain: true })
   if (car.is_active()) {
     var {days, hours, minutes, seconds} = car.time_values()
   }
@@ -33,6 +32,7 @@ router.get('/:id', async (req, res) => {
   res.render('cars/show', {
     car: car.get({ plain: true}),
     is_active: car.is_active(),
+    formatted_ending_date: car.formatted_ending_date(),
     time_values: {
       days, hours, minutes, seconds
     },

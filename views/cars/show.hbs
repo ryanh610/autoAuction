@@ -1,33 +1,39 @@
-<h1>{{car.year}} {{car.manufacturer}} {{car.model}}</h1>
-<h2>Posted by {{car.user.username}}</h2>
-<h4>Mileage: {{car.mileage}}</h4>
-<br>
-<img src="{{car.file_path}}">
-<p>{{car.description}}</p>
-<br>
+<main class="w-3/4 flex flex-col items-center justify-center mx-auto">
+  <div class="flex flex-col justify-center items-center my-2">
+    <h1 class="mr-3">{{car.year}} {{car.manufacturer}} {{car.model}}</h1>
+    <h2>Posted by {{car.user.username}}</h2>
+  </div>
+    <span id="auction-timer" 
+          class="text-3xl"
+          data-days="{{time_values.days}}"
+          data-hours="{{time_values.hours}}"
+          data-minutes="{{time_values.minutes}}"
+          data-seconds="{{time_values.seconds}}"
+          >
+    </span>
+  <br>
+  <img src="{{car.file_path}}" class="py-3">
+  <h4><span class="font-bold">Mileage:</span> {{car.mileage}}</h4>
+  <p>{{car.description}}</p>
+  <br>
 
-<div>
-  <p>This item will become unavailable on {{car.ending_date}}. </p>
-    {{time_values.days}} days,
-  <span id="auction-timer" 
-        data-hours="{{time_values.hours}}"
-        data-minutes="{{time_values.minutes}}"
-        data-seconds="{{time_values.seconds}}"
-        >
-  </span>
-</div>
-<br>
-{{#if is_active }}
-  <form action="/api/cars/{{car.id}}/bids" method="POST" id="createBid">
-    <input type="hidden" name="car_id" value="{{car.id}}">
-    <input type="number" name="price" id="price">
-    <input type="submit" value="Bid">
-  </form>
-{{else}}
-  <p class="font-bold text-xl">This auction is closed. Bidding is no longer allowed.</p>
-{{/if}}
-<ul>
-  {{#each car.bids as |bid|}}
-    <li>{{bid.price}} - {{bid.user.username}}</li>
-  {{/each}}
-</ul>
+  <div>
+    <p>This item will become unavailable on {{formatted_ending_date}}. </p>
+  </div>
+
+  {{#if is_active }}
+    <form action="/api/cars/{{car.id}}/bids" method="POST" id="createBid">
+      <input type="hidden" name="car_id" value="{{car.id}}">
+      <input type="number" name="price" id="price">
+      <input type="submit" value="Bid">
+    </form>
+  {{else}}
+    <p class="font-bold text-xl">This auction is closed. Bidding is no longer allowed.</p>
+  {{/if}}
+  <h3 class="text-2xl">Current Bids</h3>
+  <ul class="rounded mt-2">
+    {{#each car.bids as |bid|}}
+      <li class="odd:bg-gray-200 py-3 pr-6 pl-2">{{bid.price}} - {{bid.user.username}}</li>
+    {{/each}}
+  </ul>
+</main>

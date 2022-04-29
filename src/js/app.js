@@ -13,10 +13,11 @@ timer.start({countdown: true, startValues: {
   seconds: htmlTimer.dataset.seconds,
 }});
 
-$('#auction-timer').html(timer.getTimeValues().toString());
+$('#auction-timer').html(`${timer.getTimeValues().days}:${timer.getTimeValues().toString()}`);
 
 timer.addEventListener('secondsUpdated', function (e) {
-    $('#auction-timer').html(timer.getTimeValues().toString());
+  const timeString = `${timer.getTimeValues().days}:${timer.getTimeValues().toString()}`
+    $('#auction-timer').html(timeString);
 });
 
 timer.addEventListener('targetAchieved', function (e) {
