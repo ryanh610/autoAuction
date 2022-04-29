@@ -1,5 +1,13 @@
 
 <form action="/api/bids" method="POST" enctype="multipart/form-data" class="flex-column p-2 col-6">
+  <div>
+    <label for="cars">Choose a car:</label>
+    <select name="cars" id="cars">
+      {{#each cars as |car|}}
+        <option value="{{car.id}}">{{car.year}} {{car.manufacturer}} {{car.model}}</option>
+      {{/each}}
+    </select>
+  </div>
   <div class="flex-column p-2 col-6">
     <label for="price">Price</label>
     <input type="text" name="price" id="price">
@@ -8,9 +16,7 @@
     <input type="submit" value="Submit">
   </div>
   <ul>
-  {{#each cars as |car|}}
-    <li>{{car.manufacturer}}</li>
-  {{/each}}
+  
 </ul>
 </form>
 
