@@ -1,23 +1,18 @@
-
-<form action="/api/bids" method="POST" enctype="multipart/form-data" class="flex-column p-2 col-6">
-  <div>
-    <label for="cars">Choose a car:</label>
-    <select name="cars" id="cars">
+<form action="api/bids" method="POST" enctype="multipart/form-data" class="flex-column p-2 col-6">
+  <div class="flex-column p-2 col-6">
+    <label for="price">Price</label>
+    <input type="number" name="price" id="price">
+  </div>
+  <div class="flex-column p-2 col-6">
+    <label for="car_id">Choose a car:</label>
+    <select name="car_id" id="car_id">
       {{#each cars as |car|}}
         <option value="{{car.id}}">{{car.year}} {{car.manufacturer}} {{car.model}}</option>
       {{/each}}
     </select>
   </div>
-  <div class="flex-column p-2 col-6">
-    <label for="price">Price</label>
-    <input type="text" name="price" id="price">
-  </div>
   <div>
     <input type="submit" value="Submit">
   </div>
-  <ul>
-  
-</ul>
 </form>
 
-</section>

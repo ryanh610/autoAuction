@@ -2,6 +2,7 @@ const express = require('express')
 const auth_routes = require('./auth_routes')
 const apiRoutes = require('./api');
 const cars = require('./cars')
+const bids = require('./bids')
 const Car = require('../models/Car')
 const router = express.Router();
 
@@ -10,6 +11,7 @@ router.use('/api', apiRoutes);
 router.use('/users', auth_routes);
 
 router.use('/cars', cars)
+router.use('/bids', bids)
 
 router.get('/', async (req, res) => {
   
@@ -42,22 +44,7 @@ router.get('/create', (req, res) => {
   
 })
 
-router.get('/bid', async (req, res) => {
-  try {
-    const user = req.session.user || null
-    const carData = await Car.findAll();
-    const cars = carData.map((car) => car.get({ plain: true }));
 
-    res.render('partials/bid_details', {
-      user: user,
-      cars
-    });
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-  
-})
 
 // TODO: Create these authentication views 
 router.get('/login', (req, res) => res.render('auth/login'));
