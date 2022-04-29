@@ -12,6 +12,9 @@ const PORT = 3001 || process.env.PORT
 
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
   secret: process.env.APP_KEY,
   resave: false,
@@ -21,9 +24,6 @@ app.use(session({
   })
 }))
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
 
 app.engine('.hbs', engine({ extname: '.hbs'}))
 app.set('view engine', '.hbs')

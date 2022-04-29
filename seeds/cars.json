@@ -7,7 +7,8 @@
     "description": "Does Saturn even exist, anymore?",
     "ending_date": "2022-06-1 12:00:00",
     "year": 2000,
-    "user_id": 1
+    "user_id": 1,
+    "file_path": "https://auto-auction.us-east-1.linodeobjects.com/af6839da14f8144ce6e7fddae58acde9.jpg"
   },
   {
     "manufacturer": "Volkswagen",
@@ -17,7 +18,8 @@
     "description": "It is a car. It works.",
     "ending_date": "2022-06-1 12:00:00",
     "year": 2019,
-    "user_id": 2
+    "user_id": 2,
+    "file_path": "https://auto-auction.us-east-1.linodeobjects.com/8c7d72f4d1122e2a5a7eef77edbcd592.jpg"
   },
   {
     "manufacturer": "Volkswagen",
@@ -27,7 +29,8 @@
     "description": "Only been driven 16 times.",
     "ending_date": "2022-06-1 12:00:00",
     "year": 2021,
-    "user_id": 2
+    "user_id": 2,
+    "file_path": "https://auto-auction.us-east-1.linodeobjects.com/3c739bc6fb42cfcf225cbd9e4c671706.jpg"
   }
 ]
 

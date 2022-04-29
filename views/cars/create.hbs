@@ -1,37 +1,39 @@
-<form action="/api/cars" method="POST" enctype="multipart/form-data" class="flex-column p-2 col-6">
-  <div class="flex-column p-2 col-6">
+<form action="/cars" method="POST" enctype="multipart/form-data" 
+      class="flex flex-col p-2 col-6 w-4/5 justify-center items-center mx-auto"
+      >
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="manufacturer">Manufacturer</label>
     <input type="text" name="manufacturer" id="manufacturer">
   </div>
-  <div class="flex-column p-2 col-6">
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="model">Model</label>
     <input type="text" name="model" id="model">
   </div>
-  <div class="flex-column p-2 col-6">
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="mileage">Mileage</label>
     <input type="number" name="mileage" id="mileage">
   </div>
-  <div class="flex-column p-2 col-6">
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="color">Color</label>
     <input type="text" name="color" id="color">
   </div>
-  <div class="flex-column p-2 col-6">
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="year">Year</label>
     <input type="number" name="year" id="year">
   </div>
-  <div class="flex-column p-2 col-6">
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="ending_date">Ending Date</label>
     <input type="datetime-local" name="ending_date" id="ending_date">
   </div>
-  <div class="flex-column p-2 col-6">
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="description">Description</label>
     <textarea name="description" id="description" cols="30" rows="10"></textarea>
   </div>
-  <div class="flex-column p-2 col-6">
+  <div class="flex p-2 w-3/5 justify-between items-center">
     <label for="file">File</label>
     <input type="file" name="uploaded_file" id="file">
   </div>
-  <div>
-    <input type="submit" value="Submit">
+  <div class="flex w-3/5 items-end justify-end">
+    <input type="submit" value="Submit" class="cursor-pointer">
   </div>
 </form>

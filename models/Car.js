@@ -6,7 +6,6 @@ const { DateTime } = require('luxon')
 class Car extends Model {
   is_active() {
     return (new Date) < this.ending_date
-    console.log(this);
   }
 
   time_values() {
@@ -19,6 +18,10 @@ class Car extends Model {
 
     const end = DateTime.fromJSDate(ending)
     return getTimeDifference(end.toMillis(), now.toMillis())
+  }
+
+  formatted_ending_date() {
+    return DateTime.fromJSDate(this.ending_date).toLocaleString(DateTime.DATETIME_FULL)
   }
 }
 
