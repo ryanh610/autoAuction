@@ -17,7 +17,10 @@ router.get('/:id', async (req, res) => {
       ['bids', 'price', 'DESC']
     ]
   })
-  car.bids = car.bids.map(bid => bid.get({ plain: true }))
+  car.bids = car.bids.map(bid => {
+    bid.price = bid.formatPrice()
+    bid.get({ plain: true })
+  })
   if (!car) return res.status(404).render('errors/404')
   car.get({ plain: true })
   if (car.is_active()) {

@@ -1,7 +1,16 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
-class Bid extends Model {}
+class Bid extends Model {
+  formatPrice() {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    })
+
+    return formatter.format(this.price)
+  }
+}
 
 Bid.init(
   {

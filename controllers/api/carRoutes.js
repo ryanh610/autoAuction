@@ -129,9 +129,8 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.post('/:id/bids', authenticated, async (req, res) => {
-  console.log(req.params.id, req.body)
   try {
-    const bid = await Bid.create({
+    await Bid.create({
       price: req.body.price,
       user_id: req.session.user.id,
       car_id: req.params.id
