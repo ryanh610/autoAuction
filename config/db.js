@@ -3,7 +3,6 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-// TODO: Update this for use with Heroku
 let sequelize
 
 if (process.env.JAWSDB_URL) {
@@ -21,3 +20,5 @@ if (process.env.JAWSDB_URL) {
     }
   )
 }
+
+module.exports = sequelize
