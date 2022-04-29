@@ -8,7 +8,7 @@ const { engine } = require('express-handlebars')
 const SequelizeSessionStore = require('connect-session-sequelize')(session.Store)
 
 dotenv.config()
-const PORT = 3001 || process.env.PORT
+const PORT = process.env.PORT  || 3001
 
 const app = express()
 
