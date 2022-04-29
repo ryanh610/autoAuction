@@ -7,7 +7,7 @@ const { authenticated } = require('../../helpers/middleware')
 
 const upload = multer({ dest: 'uploads/' })
 
-router.post('/',  upload.single('uploaded_file'), async (req, res) => {
+router.post('/',  [authenticated, upload.single('uploaded_file')], async (req, res) => {
   try {
     
     if (req.body.file) {
@@ -49,10 +49,11 @@ router.post('/',  upload.single('uploaded_file'), async (req, res) => {
       color: req.body.color,
       ending_date: req.body.ending_date,
       description: req.body.description,
-      file_path: fileURL.url
+      file_path: fileURL.url,
+      user_id: req.session.user.id
     })
   } else {
-      console.log("HEEEEEEEEEEEEEEEEY");
+      console.log(req.body);
       
       const carData = await Car.create({
         manufacturer: req.body.manufacturer,
@@ -61,7 +62,8 @@ router.post('/',  upload.single('uploaded_file'), async (req, res) => {
         mileage: req.body.mileage,
         color: req.body.color,
         ending_date: req.body.ending_date,
-        description: req.body.description
+        description: req.body.description,
+        user_id: req.session.user.id
       })
       console.log(carData);
       res.status(200).json(carData);

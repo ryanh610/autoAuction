@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Car, Bid, User } = require('../../models');
+const { authenticated } = require('../../helpers/middleware')
+
 
 router.get("/", async (req, res) => {
   try {
@@ -25,8 +27,9 @@ router.get("/:id", async (req, res) => {
   });
   
 
-router.post('/', async (req, res) => {
+router.post('/', authenticated, async (req, res) => {
   try {
+    console.log(req.body)
     const newBid = await Bid.create({
       ...req.body,
       user_id: req.session.user_id,
