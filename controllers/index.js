@@ -9,11 +9,19 @@ const router = express.Router();
 router.use('/api', apiRoutes);
 router.use('/users', auth_routes);
 
+router.get('/cars/create', (req, res) => {
+  try {
+    res.render('cars/create', {
+      user: req.session.user
+    })
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 router.use('/cars', cars)
 
 router.get('/', async (req, res) => {
-  
-  
   try {
     // Get all projects and JOIN with user data
     const user = req.session.user || null
@@ -33,14 +41,7 @@ router.get('/', async (req, res) => {
   
 });
 
-router.get('/create', (req, res) => {
-  try {
-    res.render('cars/create', {user: req.session.user})
-  } catch (err) {
-    res.status(500).json(err);
-  }
-  
-})
+
 
 // TODO: Create these authentication views 
 router.get('/login', (req, res) => res.render('auth/login'));

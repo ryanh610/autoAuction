@@ -17,11 +17,15 @@
   </span>
 </div>
 <br>
-<form action="/api/cars/{{car.id}}/bids" method="POST" id="createBid">
-  <input type="hidden" name="car_id" value="{{car.id}}">
-  <input type="number" name="price" id="price">
-  <input type="submit" value="Bid">
-</form>
+{{#if is_active }}
+  <form action="/api/cars/{{car.id}}/bids" method="POST" id="createBid">
+    <input type="hidden" name="car_id" value="{{car.id}}">
+    <input type="number" name="price" id="price">
+    <input type="submit" value="Bid">
+  </form>
+{{else}}
+  <p class="font-bold text-xl">This auction is closed. Bidding is no longer allowed.</p>
+{{/if}}
 <ul>
   {{#each car.bids as |bid|}}
     <li>{{bid.price}} - {{bid.user.username}}</li>

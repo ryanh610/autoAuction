@@ -63,9 +63,10 @@ router.post('/',  upload.single('uploaded_file'), async (req, res) => {
       console.log(carData);
       res.status(200).json(carData);
     }
-    
-    
-  } catch(err) {res.status(400).json(console.log(err))}
+  } catch(err) {
+    res.redirect('/cars/create')
+    // res.status(400).json(console.log(err))
+  }
 });
 
 router.put("/:id", async (req, res) => {

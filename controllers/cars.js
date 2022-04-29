@@ -29,6 +29,7 @@ router.get('/:id', async (req, res) => {
 
   res.render('cars/show', {
     car: car.get({ plain: true}),
+    is_active: car.is_active(),
     time_values: {
       days, hours, minutes, seconds
     },
