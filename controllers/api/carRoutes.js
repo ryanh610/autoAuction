@@ -7,8 +7,12 @@ const { authenticated } = require('../../helpers/middleware')
 
 const upload = multer({ dest: 'uploads/' })
 
-router.post('/', [authenticated, upload.single('uploaded_file')], async (req, res) => {
-  (async () => {
+router.post('/',  upload.single('uploaded_file'), async (req, res) => {
+  try {
+    
+    if (req.body.file) {
+      
+    
     const fileExt = req.file.originalname.substring(req.file.originalname.indexOf('.'))
     
     const fileName = req.file.filename + fileExt
@@ -47,9 +51,25 @@ router.post('/', [authenticated, upload.single('uploaded_file')], async (req, re
       description: req.body.description,
       file_path: fileURL.url
     })
-  })().catch(err => console.error(err));
-  res.redirect('/cars')
-})
+  } else {
+      console.log("HEEEEEEEEEEEEEEEEY");
+      
+      const carData = await Car.create({
+        manufacturer: req.body.manufacturer,
+        model: req.body.model,
+        year: req.body.year,
+        mileage: req.body.mileage,
+        color: req.body.color,
+        ending_date: req.body.ending_date,
+        description: req.body.description
+      })
+      console.log(carData);
+      res.status(200).json(carData);
+    }
+    
+    
+  } catch(err) {res.status(400).json(console.log(err))}
+});
 
 router.put("/:id", async (req, res) => {
   try {
