@@ -42,6 +42,23 @@ router.get('/create', (req, res) => {
   
 })
 
+router.get('/bid', async (req, res) => {
+  try {
+    const user = req.session.user || null
+    const carData = await Car.findAll();
+    const cars = carData.map((car) => car.get({ plain: true }));
+
+    res.render('partials/bid_details', {
+      user: user,
+      cars
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  
+})
+
 // TODO: Create these authentication views 
 router.get('/login', (req, res) => res.render('auth/login'));
 router.get('/signup', (req, res) => res.render('auth/signup'));

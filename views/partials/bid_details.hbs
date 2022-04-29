@@ -1,6 +1,17 @@
-<section class="card">
-<header>{{bid.price}}</header>
-<h2>{{bid.user_id}}</h2>
 
+<form action="/api/bids" method="POST" enctype="multipart/form-data" class="flex-column p-2 col-6">
+  <div class="flex-column p-2 col-6">
+    <label for="price">Price</label>
+    <input type="text" name="price" id="price">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+  <ul>
+  {{#each cars as |car|}}
+    <li>{{car.manufacturer}}</li>
+  {{/each}}
+</ul>
+</form>
 
 </section>

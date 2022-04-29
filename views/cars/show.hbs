@@ -22,3 +22,8 @@
     <li>{{bid.price}} - {{bid.user.username}}</li>
   {{/each}}
 </ul>
+
+
+<form action="/bid" method="GET" id="{{car.id}}">
+  <input type="submit" value="Input bid">
+</form>
